@@ -99,3 +99,40 @@ class Solution {
         return true;
     }
 }
+
+/** final **/
+class Solution {
+    public int countPrimes(int n) {
+        int answer = 0;
+        // n=10 ,, 1부터 9까지의 수 ->  size = 10
+        boolean[] primeNum = new boolean[n];
+        //init array to true
+        for (int i = 0; i < primeNum.length; i++) {
+            primeNum[i] = true;
+        }
+
+        if (n == 0 || n == 1 || n == 2) {
+            return 0;
+        }
+
+        //not prime == false
+        primeNum[1] = false;
+        primeNum[0] = false;
+
+        for (int i = 2; i < primeNum.length; i++) {
+            for (int j = 2; i * j < primeNum.length; j++) {
+                // System.out.println(i*j);
+
+                primeNum[i * j] = false;
+            }
+        }
+        //count true
+        for (boolean bool: primeNum) {
+            // System.out.println(bool);
+            if (bool) {
+                answer++;
+            }
+        }
+        return answer;
+
+    }
